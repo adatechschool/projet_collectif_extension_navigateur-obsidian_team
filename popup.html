@@ -1,10 +1,31 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <button id="changeColor"></button>
-    <script src="popup.js"></script>
-  </body>
+
+<head>
+  <link rel="stylesheet" href="/popup.css">
+</head>
+
+<body>
+
+  <button id="myBtn">Open Modal</button>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <div>
+        <input type="range" id="time" name="time"
+               min="0" max="60" onchange="updateTextInput(this.value);">
+        <input id="text-input" for="time" type="text" placeholder="Enter yout time" value=""></input>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="popup.js"></script>
+</body>
+
 </html>
