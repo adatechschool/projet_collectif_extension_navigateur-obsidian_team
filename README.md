@@ -7,6 +7,6 @@ Extension de navigateur by @obsidian_team
 
 # Feature 3: countdown back => Emma
 
-# Feature 4: front end signal => Oihan
+# Feature 4: front end timer => Oihan
 
 # Feature 5 front / back update countdown => Oihan
