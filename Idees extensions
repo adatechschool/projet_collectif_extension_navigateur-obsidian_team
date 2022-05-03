@@ -1,0 +1,9 @@
+Playlist Musique => je tape un mot et l'extension me propose une playlist musicale en rapport avec ce mot
+
+Wishlist => je peux ajouter des produits de divers sites sur cette wishlist. Cette wishlist m'est ensuite présentée sous forme de liste et le clic sur un des éléments me ramène sur la page magasin / produit
+
+Prise de notes => je vais sur un site, je peux surligener un mot / une phrase qui m'ouvrirait un champs qui me permet de créer une note. l'association mot / note est sauvegardé et accessible via l'extension. Cliquer sur l'item me permet de             retourner sur le site où la note a été prise
+
+Cryptage de message => communication sécurisée. Je suis sur un site de messagerie (type FB Messenger / Whatsapp) : je peux paramétrer un message et une clé de cryptage pour envoyer un message via le site en question. Je suis récepteur de ce message : en renseignant la bonne clé, je suis capable de décrypter le message qui m'a été envoyé. La fonctionnalité est automatique et ne nécessite pas de copier/coller
+
+TimeBox => Je peux lancer une timebox globale avec un temps paramétrable. J'ai une alerte quand le temps est écoulé. Feature+ : Mon extension est capable de détecter les différents onglets ouverts ainsi que la longueur des articles que je lis et le temps alloué à la lecture de l'article dépend de sa longueur.
