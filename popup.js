@@ -25,4 +25,21 @@ function updateTextInput(val) {
     document.getElementById("text-input")
   }
 
+  // evenement de click  play + fonction
+  let play = document.getElementById("play");
+  play.addEventListener("click", Event => {
+    //event
+  });
+
+  // evenement de click  pause + fonction
+  let pause = document.getElementById("pause");
+  pause.addEventListener("click", Event => {
+    //event
+  });
   
+// evenement de click  stop + fonction
+//stoop avec deux O car stop steul est un élement spécifique
+let stoop = document.getElementById("stoop");
+stoop.addEventListener("click", Event => {
+  //event
+});
