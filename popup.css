@@ -62,8 +62,14 @@
 
 #icones i {
   font-size: 30px;
+  cursor: pointer;
 }
 
+#icones a{
+  color: rgb(22, 99, 255);
+  text-decoration: none;
+}
 
-
-
+#icones a:hover {
+  color: rgb(13, 64, 165);
+}
