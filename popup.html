@@ -10,41 +10,34 @@
 
 <body>
 
-  <button id="myBtn">Open Modal</button>
-  <!-- The Modal -->
-  <div id="myModal" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
-      <span class="close">&times;</span>
 
-      <div id="input-range">
+        <div id="input-range">
         <input type="range" id="time" name="time" min="0" max="60" onchange="updateTextInput(this.value);">
         <input id="text-input" for="time" type="text" placeholder="Enter your time" value=""></input>
-      </div>
+        </div>
 
-      <div id="icones">
+        <div id="icones">
         <a href="#" id="play" class="clikable">
-          <i class="fa-solid fa-play"></i>
+            <i class="fa-solid fa-play"></i>
         </a>
-          <a href="#" id="pause" class="clikable">
-          <i class="fa-solid fa-pause"></i>
-          </a>
-          <a href="#" id="stoop" class="clikable">
-          <i class="fa-solid fa-stop"></i>
+            <a href="#" id="pause" class="clikable">
+            <i class="fa-solid fa-pause"></i>
+            </a>
+            <a href="#" id="stoop" class="clikable">
+            <i class="fa-solid fa-stop"></i>
         </a>
-      </div>
+        </div>
 
-    </div>
+        <div id="countdown">
+            <div id="countdown-number"></div>
+            <svg>
+            <circle r="18" cx="20" cy="20"></circle>
+            </svg>
+        </div>
 
-  </div>
-
-  <div id="countdown">
-    <div id="countdown-number"></div>
-    <svg>
-      <circle r="18" cx="20" cy="20"></circle>
-    </svg>
-  </div>
+    </div>  
 
 
   <script src="popup.js"></script>
