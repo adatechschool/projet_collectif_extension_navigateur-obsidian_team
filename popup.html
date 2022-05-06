@@ -1,10 +1,46 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" href="button.css">
-  </head>
-  <body>
-    <button id="changeColor"></button>
-    <script src="popup.js"></script>
-  </body>
+
+<head>
+  <link rel="stylesheet" href="/popup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+    integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+  <button id="myBtn">Open Modal</button>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+
+      <div id="input-range">
+        <input type="range" id="time" name="time" min="0" max="60" onchange="updateTextInput(this.value);">
+        <input id="text-input" for="time" type="text" placeholder="Enter your time" value=""></input>
+      </div>
+
+      <div id="icones">
+        <a href="#" id="play" class="clikable">
+          <i class="fa-solid fa-play"></i>
+        </a>
+          <a href="#" id="pause" class="clikable">
+          <i class="fa-solid fa-pause"></i>
+          </a>
+          <a href="#" id="stoop" class="clikable">
+          <i class="fa-solid fa-stop"></i>
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <script src="popup.js"></script>
+</body>
+
 </html>
