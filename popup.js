@@ -43,3 +43,13 @@ let stoop = document.getElementById("stoop");
 stoop.addEventListener("click", Event => {
   //event
 });
+
+let countdownNumberEl = document.getElementById('countdown-number');
+let countdown = 10;
+
+countdownNumberEl.textContent = countdown;
+
+setInterval(function () {
+  countdown = --countdown < 0 ? alert("countdown over") : countdown;
+  countdownNumberEl.textContent = countdown;
+}, 1000);
