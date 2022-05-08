@@ -36,6 +36,8 @@ class Timer {
   }
 }
 
+function convertTimeFrontToBack(input){return input*60*1000}
+
 //Create timer instance
 const timer = new Timer(() => {
   console.log("countdown is over!");
@@ -44,7 +46,25 @@ const timer = new Timer(() => {
 //Receive events from popup
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse){
-    console.log(`request : ${request.event}`)
     sendResponse({status: `background received request for ${request.event}`})
+    
+    switch (request.event){
+      case "play":
+        if (timer.state == "isStopped"){
+          timer.start(convertTimeFrontToBack(request.timer))
+        }
+        else if (timer.state == "isPaused"){
+          timer.resume()
+        }
+      case "pause":
+        if (timer.state == "isActive"){
+          timer.pause()
+        }
+      case "stop":
+        if (timer.state == "isActive" || timer.state == "isPaused"){
+          timer.stop()
+        }
+
+    }
   }
 );

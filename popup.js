@@ -53,11 +53,13 @@ function playEvent() {
   */
 
   let timerValue = parseInt(textInput.value)
-  if (!isNan(timerValue)){
+  if (!isNaN(timerValue)){
     chrome.runtime.sendMessage({event: "play", timer: timerValue}, function(response){
       console.log(response.status)
     })  
-  }  
+  } else {
+    //Message indicating the input value is not correct
+  }
 }
 
 function pauseEvent() {
