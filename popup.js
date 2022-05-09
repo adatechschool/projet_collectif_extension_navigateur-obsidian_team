@@ -38,10 +38,19 @@ let countdown = 10;
 
 countdownNumberEl.textContent = countdown;
 
-setInterval(function () {
-  countdown = --countdown < 0 ? alert("countdown over") : countdown;
-  countdownNumberEl.textContent = countdown;
-}, 1000);
+function popUpStartTimer(){
+  countdownNumberEl.style.display="block"
+  countdownNumberEl.textContent=countdown
+  setInterval(function () {
+    if (countdown > 0){
+      countdown = --countdown
+      countdownNumberEl.textContent = countdown;
+    } else {
+      countdownNumberEl.style.display="None";
+    }
+  }, 1000)
+}
+
 
 
 // Event functions
@@ -55,7 +64,8 @@ function playEvent() {
   let timerValue = parseInt(textInput.value)
   if (!isNaN(timerValue)){
     chrome.runtime.sendMessage({event: "play", timer: timerValue}, function(response){
-      console.log(response.status)
+      console.log(response.status);
+    popUpStartTimer();
     })  
   } else {
     //Message indicating the input value is not correct
