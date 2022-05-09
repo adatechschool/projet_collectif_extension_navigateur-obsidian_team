@@ -76,4 +76,13 @@ function stopEvent() {
   console.log ("stop pressed")
 }
 
+//tentative pour valider le chiffre ajouté dans l'input
+/*textInput.addEventListener("keydown", editText);
+function editText() {
+  switch (event.keyCode()) {
+    case "enter":
+      break;
+}
+}*/
+
 
