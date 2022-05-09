@@ -109,7 +109,6 @@ function stopEvent(){
 }
   /*Check current status of timer 
     Event does not trigger if timer already stopped
-<<<<<<< HEAD
   */
   console.log ("stop pressed")
 }
@@ -124,6 +123,3 @@ function editText() {
 }*/
 
 
-=======
-  */
->>>>>>> handling the pause, stop and play buttons + fixing some bugs
