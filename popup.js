@@ -39,9 +39,14 @@ let countdown = 10;
 countdownNumberEl.textContent = countdown;
 
 setInterval(function () {
-  countdown = --countdown < 0 ? alert("countdown over") : countdown;
-  countdownNumberEl.textContent = countdown;
-}, 1000);
+  if (countdown > 0){
+    countdownNumberEl.textContent = countdown;
+    countdown = --countdown
+  } else {
+    countdownNumberEl.style.display="None";
+  }
+}, 1000)
+
 
 
 // Event functions
