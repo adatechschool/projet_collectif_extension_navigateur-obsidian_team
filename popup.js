@@ -56,6 +56,7 @@ function popUpStartTimer(){
 // Event functions
 function playEvent() {
   console.log ("play pressed")
+  }
   /*Check current status of timer 
     Event triggers if timer on pause or stopped
     Event triggers only if textInput value is a valid format (int)
@@ -68,20 +69,36 @@ function playEvent() {
     popUpStartTimer();
     })  
   } else {
+    console.log("incorrect input, please enter a valid number")
     //Message indicating the input value is not correct
   }
 }
 
 function pauseEvent() {
+  const state = chrome.storage.sync.get({ state });
+  let remainingTime = timerValue
+
+  if (state == "isPaused"){
+    chrome.runtime.sendMessage({event: "pause"}, {time: remainingTime}, function(response){
+    console.log(response.status)
   /*Check current status of timer 
     Event triggers if timer playing
   */
   console.log ("pause pressed")
 }
-
-function stopEvent() {
+  }
+}
+function stopEvent(){
+  const state = chrome.storage.sync.get({ state });
+  if (state == "isActive" || state == "isPaused"){
+    chrome.runtime.sendMessage({event: "stop"}, function(response){
+    console.log(response.status)
+  }
+}
+}
   /*Check current status of timer 
     Event does not trigger if timer already stopped
+<<<<<<< HEAD
   */
   console.log ("stop pressed")
 }
@@ -96,3 +113,6 @@ function editText() {
 }*/
 
 
+=======
+  */
+>>>>>>> handling the pause, stop and play buttons + fixing some bugs
