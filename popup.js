@@ -32,10 +32,12 @@ let stoop = document.getElementById("stoop");
 stoop.addEventListener("click", stopEvent);
 
 // From Storage API, get current timer status
-chrome.runtime.onStartup.addListener(() =>{
-  chrome.storage.sync.get ({ timer })
-  console.log(`Success import for timer with values ${timer.state} ${timer.remainingTime}`)
+let frontTimer
+chrome.storage.sync.get("timer", ({ timer }) =>{
+  frontTimer = timer
+  console.log(`Success import for timer with values ${timer.state} ${timer.remainingTime}`);
 });
+
 
 // Countdown logic
 let countdownNumberEl = document.getElementById('countdown-number');
