@@ -55,7 +55,12 @@ function popUpStartTimer(){
 
 // Event functions
 function playEvent() {
+<<<<<<< HEAD
   console.log ("play pressed");
+=======
+  console.log ("play pressed")
+  }
+>>>>>>> 492ad8736bde22313403d880de4e0d21dc812bb2
   /*Check current status of timer 
     Event triggers if timer on pause or stopped
     Event triggers only if textInput value is a valid format (int)*/
@@ -66,11 +71,16 @@ function playEvent() {
     popUpStartTimer();
     })  
   } else {
+<<<<<<< HEAD
     console.log("incorrect input, please enter a valid number");
+=======
+    console.log("incorrect input, please enter a valid number")
+>>>>>>> 492ad8736bde22313403d880de4e0d21dc812bb2
     //Message indicating the input value is not correct
   }
 }
 
+<<<<<<< HEAD
 function pauseEvent(){
   const state = chrome.storage.sync.get({ state });
   let remainingTime = timerValue;
@@ -113,3 +123,30 @@ function editText() {
 }*/
 
 
+=======
+function pauseEvent() {
+  const state = chrome.storage.sync.get({ state });
+  let remainingTime = timerValue
+
+  if (state == "isPaused"){
+    chrome.runtime.sendMessage({event: "pause"}, {time: remainingTime}, function(response){
+    console.log(response.status)
+  /*Check current status of timer 
+    Event triggers if timer playing
+  */
+  console.log ("pause pressed")
+}
+  }
+}
+function stopEvent(){
+  const state = chrome.storage.sync.get({ state });
+  if (state == "isActive" || state == "isPaused"){
+    chrome.runtime.sendMessage({event: "stop"}, function(response){
+    console.log(response.status)
+  }
+}
+}
+  /*Check current status of timer 
+    Event does not trigger if timer already stopped
+  */
+>>>>>>> 492ad8736bde22313403d880de4e0d21dc812bb2
