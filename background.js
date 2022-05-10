@@ -52,6 +52,10 @@ function getTimerStatus(){
   })
 }
 
+function setTimerStatus(){
+  chrome.storage.sync.set({ timer })
+}
+
 //Receive events from popup
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse){
@@ -62,20 +66,27 @@ chrome.runtime.onMessage.addListener(
     switch (request.event){
       case "play":
         if (timer.state == "isStopped"){
-          timer.start(convertTimeFrontToBack(request.timer))          
+          timer.start(convertTimeFrontToBack(request.timer));         
         }
         else if (timer.state == "isPaused"){
+          state = timer.state 
+          chrome.storage.sync.set({ state });
           timer.resume()
         }
       case "pause":
+        timer.state = chrome.storage.sync.get({ state })
         if (timer.state == "isActive"){
+          state = timer.state 
+          chrome.storage.sync.set({ state , remainingTime });
           timer.pause()
         }
       case "stop":
+        timer.state = chrome.storage.sync.get({ state })
         if (timer.state == "isActive" || timer.state == "isPaused"){
           timer.state = "isStopped"
           timer.stop()
         }
     }
+    () => {setTimerStatus()} 
   }
 );
