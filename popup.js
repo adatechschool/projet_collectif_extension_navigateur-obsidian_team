@@ -34,23 +34,34 @@ stoop.addEventListener("click", stopEvent);
 
 // Countdown logic
 let countdownNumberEl = document.getElementById('countdown-number');
-let countdown = 10;
-
-countdownNumberEl.textContent = countdown;
 
 function popUpStartTimer(){
   countdownNumberEl.style.display="block"
-  countdownNumberEl.textContent=countdown
+  let countdown= parseInt(textInput.value)*60;
+  countdownNumberEl.textContent= timeFormatting(countdown)
   setInterval(function () {
     if (countdown > 0){
       countdown = --countdown
-      countdownNumberEl.textContent = countdown;
+      countdownNumberEl.textContent = timeFormatting(countdown);
     } else {
       countdownNumberEl.style.display="None";
     }
   }, 1000)
 }
 
+//countdown utility functions
+function timeFormatting(d){
+    let h= Math.floor(d/3600);
+    let m= Math.floor(d%3600/60);
+    let s= d%60;
+  if(h>0){
+    return h + " : "+ m + " : "+ s
+  } else if(m>0) {
+    return m + " : "+ s
+  } else{
+    return s
+  }
+}
 
 
 // Event functions
