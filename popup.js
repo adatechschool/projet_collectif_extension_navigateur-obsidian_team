@@ -82,28 +82,32 @@ function playEvent() {
   }
 }
 
-function pauseEvent() {
-  const state = chrome.storage.sync.get({ state });git 
+function pauseEvent(){
+  const state = chrome.storage.sync.get({ state });
   let remainingTime = timerValue;
 
-  if (state == "isPaused"){
-    chrome.runtime.sendMessage({event: "pause"}, {time: remainingTime}, function(response){
-    console.log(response.status)
+  if (state == "isActive"){
+    chrome.runtime.sendMessage(
+      {event: "pause"}, function(response){
+        console.log(response.status)
+      }
+    )
     /*Check current status of timer 
     Event triggers if timer playing*/
     console.log ("pause pressed")
-    }
   }
 }
+
 
 function stopEvent(){
   const state = chrome.storage.sync.get({ state });
   if (state == "isActive" || state == "isPaused"){
-    chrome.runtime.sendMessage({event: "stop"}, function(response){
-    console.log(response.status)
-    }
+    chrome.runtime.sendMessage(
+      {event: "stop"}, function(response){
+        console.log(response.status)
+      }
+    )
   }
-}
   /*Check current status of timer 
     Event does not trigger if timer already stopped
   */
