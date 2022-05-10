@@ -38,41 +38,42 @@ class Timer {
 
 function convertTimeFrontToBack(input){return input*60*1000}
 
-//Create timer instance
-const timer = new Timer(() => {
-  console.log("countdown is over!");
-})
+//Create timer instance & save it in storage API
+let timer = new Timer();
+chrome.runtime.onInstalled.addListener(() => {
+  chrome.storage.sync.set({ timer });
+  console.log('Timer initialized and saved in storage API.')
+});
+
+//Support function to get timer status from storage API
+function getTimerStatus(){
+  chrome.storage.sync.get("timer", ({ timer }) => {
+    return timer
+  })
+}
 
 //Receive events from popup
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse){
     sendResponse({status: `background received request for ${request.event}`})
     
+    timer = getTimerStatus()
+
     switch (request.event){
       case "play":
         if (timer.state == "isStopped"){
-          state = timer.state 
-          chrome.storage.sync.set({ state });
-          timer.start(convertTimeFrontToBack(request.timer))
+          timer.start(convertTimeFrontToBack(request.timer))          
         }
         else if (timer.state == "isPaused"){
-          state = timer.state 
-          chrome.storage.sync.set({ state });
           timer.resume()
         }
       case "pause":
-        timer.state = chrome.storage.sync.get({ state })
         if (timer.state == "isActive"){
-          state = timer.state 
-          chrome.storage.sync.set({ state , remainingTime });
           timer.pause()
         }
       case "stop":
-        timer.state = chrome.storage.sync.get({ state })
         if (timer.state == "isActive" || timer.state == "isPaused"){
           timer.state = "isStopped"
-          state = timer.state 
-          chrome.storage.sync.set({ state });
           timer.stop()
         }
     }
