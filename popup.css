@@ -37,18 +37,22 @@
   cursor: pointer;
 }
 
+#text-input{
+margin-top: 15px;
+}
+
 #input-range{
   padding-top: 20px;
-  padding-bottom: 15px;
   text-align: center;
 }
+
 
 ::placeholder{
   text-align: center;
 }
 
 #icones{
-  padding-top: 30px;
+  padding-top: 20px;
   color: rgb(22, 99, 255);
   padding-inline-end: 90px;
   width: 20%;
