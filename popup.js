@@ -16,7 +16,6 @@ function updateInputText(val){
   document.getElementById("text-input")
 }
 
-
 //Buttons setup
 // Play
 let play = document.getElementById("play");
@@ -38,13 +37,19 @@ chrome.storage.sync.get("timer", ({ timer }) =>{
   console.log(`Success import for timer with values ${timer.state} ${timer.remainingTime}`);
 });
 
+//Global update depending on timer status
+function globalUpdate(){
+ if (frontTimer.status=="isActive"){
+   let rTime = new Date() - frontTimer.startTime
+   popUpStartTimer(rTime)
+ } 
+}
 
 // Countdown logic
 let countdownNumberEl = document.getElementById('countdown-number');
 
-function popUpStartTimer(){
+function popUpStartTimer(countdown){
   countdownNumberEl.style.display="block"
-  let countdown= parseInt(textInput.value)*60;
   countdownNumberEl.textContent= timeFormatting(countdown)
   setInterval(function () {
     if (countdown > 0){
@@ -78,19 +83,25 @@ function playEvent() {
     Event triggers if timer on pause or stopped
     Event triggers only if textInput value is a valid format (int)*/
   let timerValue = parseInt(textInput.value);
-  if (!isNaN(timerValue)){
+  if (frontTimer.status=="isStopped"){
+    if (!isNaN(timerValue)){
+      chrome.runtime.sendMessage({event: "play", timer: timerValue}, function(response){
+        console.log(response.status);
+      });
+      popUpStartTimer(parseInt(textInput.value)*60);
+    } else {
+      console.log("incorrect input, please enter a valid number")  
+    }
+  } else if (frontTimer.status=="isPaused"){
     chrome.runtime.sendMessage({event: "play", timer: timerValue}, function(response){
       console.log(response.status);
-    popUpStartTimer();
-    })  
-  } else {
-    console.log("incorrect input, please enter a valid number");
-    //Message indicating the input value is not correct
+    });
   }
 }
 
+
 function pauseEvent(){
-  if (state == "isActive"){
+  if (frontTimer.state == "isActive"){
     chrome.runtime.sendMessage(
       {event: "pause"}, function(response){
         console.log(response.status)
