@@ -31,6 +31,10 @@ pause.addEventListener("click", pauseEvent);
 let stoop = document.getElementById("stoop");
 stoop.addEventListener("click", stopEvent);
 
+//Input range
+let range = document.getElementById("time");
+range.setAttribute("onchange", updateTextInput(range.value))
+
 
 // Countdown logic
 let countdownNumberEl = document.getElementById('countdown-number');
@@ -54,6 +58,8 @@ function timeFormatting(d){
     let h= Math.floor(d/3600);
     let m= Math.floor(d%3600/60);
     let s= d%60;
+    m = m < 10 ? "0" + m : m
+    s = s < 10 ? "0" + s : s
   if(h>0){
     return h + " : "+ m + " : "+ s
   } else if(m>0) {
@@ -62,6 +68,7 @@ function timeFormatting(d){
     return s
   }
 }
+
 
 
 // Event functions
