@@ -12,6 +12,7 @@ class Timer {
     this.state = "isPaused"
     clearTimeout(this.timerId)
     this.remainingTime -= new Date() - this.startTime
+    setTimerStatus()
   }
 
   resume() {
@@ -19,6 +20,7 @@ class Timer {
     this.startTime = new Date()
     clearTimeout(this.timerId)
     this.timerId = setTimeout(this.callback, this.remainingTime)
+    setTimerStatus()
   }
 
   start(delay) {
@@ -26,6 +28,7 @@ class Timer {
     this.startTime = new Date()
     this.state = "isActive"
     this.timerId = setTimeout(this.callback, this.remainingTime)
+    setTimerStatus()
   }
 
   stop(){
@@ -33,6 +36,7 @@ class Timer {
     this.state = "isStopped"
     this.startTime = null
     clearTimeout(this.timerId)
+    setTimerStatus()
   }
 }
 

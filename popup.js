@@ -38,19 +38,25 @@ chrome.storage.sync.get("timer", ({ timer }) =>{
 });
 
 //Global update depending on timer status
-function globalUpdate(){
+function starter(){
  if (frontTimer.status=="isActive"){
-   let rTime = new Date() - frontTimer.startTime
+   let rTime = frontTimer.remainingTime - (new Date() - frontTimer.startTime)
    popUpStartTimer(rTime)
- } 
+ } else if (frontTimer.status=="isPaused"){
+   initializeTimer(frontTimer.remainingTime)
+ }
 }
 
 // Countdown logic
 let countdownNumberEl = document.getElementById('countdown-number');
 
-function popUpStartTimer(countdown){
+function initializeTimer(countdown){
   countdownNumberEl.style.display="block"
-  countdownNumberEl.textContent= timeFormatting(countdown)
+  countdownNumberEl.textContent=timeFormatting(countdown)
+}
+
+function popUpStartTimer(countdown){
+  initializeTimer(countdown)
   setInterval(function () {
     if (countdown > 0){
       countdown = --countdown
@@ -83,7 +89,7 @@ function playEvent() {
     Event triggers if timer on pause or stopped
     Event triggers only if textInput value is a valid format (int)*/
   let timerValue = parseInt(textInput.value);
-  if (frontTimer.status=="isStopped"){
+  if (frontTimer.state=="isStopped"){
     if (!isNaN(timerValue)){
       chrome.runtime.sendMessage({event: "play", timer: timerValue}, function(response){
         console.log(response.status);
