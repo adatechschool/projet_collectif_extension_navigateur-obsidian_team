@@ -9,10 +9,10 @@ let textInput = document.getElementById("text-input")
 
 //Forms update each other
 function updateTextInput(val) {
-    document.getElementById("text-input").value=val; 
-  }
+  document.getElementById("text-input").value = val;
+}
 
-function updateInputText(val){
+function updateInputText(val) {
   document.getElementById("text-input")
 }
 
@@ -25,7 +25,7 @@ play.addEventListener("click", playEvent);
 // Pause
 let pause = document.getElementById("pause");
 pause.addEventListener("click", pauseEvent);
-  
+
 // Stop
 //stoop avec deux O car stop steul est un élement spécifique
 let stoop = document.getElementById("stoop");
@@ -35,30 +35,30 @@ stoop.addEventListener("click", stopEvent);
 // Countdown logic
 let countdownNumberEl = document.getElementById('countdown-number');
 
-function popUpStartTimer(){
-  countdownNumberEl.style.display="block"
-  let countdown= parseInt(textInput.value)*60;
-  countdownNumberEl.textContent= timeFormatting(countdown)
+function popUpStartTimer() {
+  countdownNumberEl.style.display = "block"
+  let countdown = parseInt(textInput.value) * 60;
+  countdownNumberEl.textContent = timeFormatting(countdown)
   setInterval(function () {
-    if (countdown > 0){
+    if (countdown > 0) {
       countdown = --countdown
       countdownNumberEl.textContent = timeFormatting(countdown);
     } else {
-      countdownNumberEl.style.display="None";
+      countdownNumberEl.style.display = "None";
     }
   }, 1000)
 }
 
 //countdown utility functions
-function timeFormatting(d){
-    let h= Math.floor(d/3600);
-    let m= Math.floor(d%3600/60);
-    let s= d%60;
-  if(h>0){
-    return h + " : "+ m + " : "+ s
-  } else if(m>0) {
-    return m + " : "+ s
-  } else{
+function timeFormatting(d) {
+  let h = Math.floor(d / 3600);
+  let m = Math.floor(d % 3600 / 60);
+  let s = d % 60;
+  if (h > 0) {
+    return h + " : " + m + " : " + s
+  } else if (m > 0) {
+    return m + " : " + s
+  } else {
     return s
   }
 }
@@ -66,69 +66,46 @@ function timeFormatting(d){
 
 // Event functions
 function playEvent() {
-<<<<<<< HEAD
-  console.log ("play pressed");
-=======
-<<<<<<< HEAD
-  console.log ("play pressed");
-=======
-  console.log ("play pressed")
-  }
->>>>>>> 492ad8736bde22313403d880de4e0d21dc812bb2
->>>>>>> d4f644a7e8441cf8d1d23f5ebd562cc7d369b66f
+  console.log("play pressed");
   /*Check current status of timer 
     Event triggers if timer on pause or stopped
     Event triggers only if textInput value is a valid format (int)*/
   let timerValue = parseInt(textInput.value);
-  if (!isNaN(timerValue)){
-    chrome.runtime.sendMessage({event: "play", timer: timerValue}, function(response){
+  if (!isNaN(timerValue)) {
+    chrome.runtime.sendMessage({ event: "play", timer: timerValue }, function (response) {
       console.log(response.status);
-    popUpStartTimer();
-    })  
+      popUpStartTimer();
+    })
   } else {
-<<<<<<< HEAD
+
     console.log("incorrect input, please enter a valid number");
-=======
-<<<<<<< HEAD
-    console.log("incorrect input, please enter a valid number");
-=======
-    console.log("incorrect input, please enter a valid number")
->>>>>>> 492ad8736bde22313403d880de4e0d21dc812bb2
->>>>>>> d4f644a7e8441cf8d1d23f5ebd562cc7d369b66f
+
     //Message indicating the input value is not correct
   }
 }
 
-<<<<<<< HEAD
-function pauseEvent(){
-=======
-<<<<<<< HEAD
-function pauseEvent(){
+function pauseEvent() {
   const state = chrome.storage.sync.get({ state });
   let remainingTime = timerValue;
 
->>>>>>> d4f644a7e8441cf8d1d23f5ebd562cc7d369b66f
-  if (state == "isActive"){
+  if (state == "isActive") {
     chrome.runtime.sendMessage(
-      {event: "pause"}, function(response){
+      { event: "pause" }, function (response) {
         console.log(response.status)
       }
     )
     /*Check current status of timer 
     Event triggers if timer playing*/
-    console.log ("pause pressed")
+    console.log("pause pressed")
   }
 }
 
 
-function stopEvent(){
-<<<<<<< HEAD
-=======
+function stopEvent() {
   const state = chrome.storage.sync.get({ state });
->>>>>>> d4f644a7e8441cf8d1d23f5ebd562cc7d369b66f
-  if (state == "isActive" || state == "isPaused"){
+  if (state == "isActive" || state == "isPaused") {
     chrome.runtime.sendMessage(
-      {event: "stop"}, function(response){
+      { event: "stop" }, function (response) {
         console.log(response.status)
       }
     )
@@ -136,7 +113,7 @@ function stopEvent(){
   /*Check current status of timer 
     Event does not trigger if timer already stopped
   */
-  console.log ("stop pressed")
+  console.log("stop pressed")
 }
 
 //tentative pour valider le chiffre ajouté dans l'input
@@ -149,30 +126,29 @@ function editText() {
 }*/
 
 
-=======
 function pauseEvent() {
   const state = chrome.storage.sync.get({ state });
   let remainingTime = timerValue
 
-  if (state == "isPaused"){
-    chrome.runtime.sendMessage({event: "pause"}, {time: remainingTime}, function(response){
-    console.log(response.status)
-  /*Check current status of timer 
-    Event triggers if timer playing
-  */
-  console.log ("pause pressed")
-}
+  if (state == "isPaused") {
+    chrome.runtime.sendMessage({ event: "pause" }, { time: remainingTime }, function (response) {
+      console.log(response.status)
+      /*Check current status of timer 
+        Event triggers if timer playing
+      */
+      console.log("pause pressed");
+    });
   }
 }
-function stopEvent(){
+
+function stopEvent() {
   const state = chrome.storage.sync.get({ state });
-  if (state == "isActive" || state == "isPaused"){
-    chrome.runtime.sendMessage({event: "stop"}, function(response){
-    console.log(response.status)
+  if (state == "isActive" || state == "isPaused") {
+    chrome.runtime.sendMessage({ event: "stop" }, function (response) {
+      console.log(response.status);
+    });
   }
 }
-}
-  /*Check current status of timer 
-    Event does not trigger if timer already stopped
-  */
->>>>>>> 492ad8736bde22313403d880de4e0d21dc812bb2
+  /*Check current status of timer
+  Event does not trigger if timer already stopped
+*/
